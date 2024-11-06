@@ -25,6 +25,8 @@ import {getTinyMCE} from 'editor_tiny/loader';
 import {pluginName} from './common';
 import * as Configuration from './configuration';
 import {getSetupCommands} from './commands';
+import {registerOptions} from './options';
+
 
 export default new Promise((resolve) => {
     // Initialise the plugin.
@@ -35,6 +37,7 @@ export default new Promise((resolve) => {
         // This is where we define icons, buttons, menu items, and so on.
         tinyMCE.PluginManager.add(pluginName, (editor) => {
             // Note: The contents of this method must be synchronous and not return any Promise.
+            registerOptions(editor);
             setupCommands(editor);
 
             return;

@@ -24,6 +24,7 @@
 import {getButtonImage} from 'editor_tiny/utils';
 import {get_string as getString} from 'core/str';
 import {component, buttonName} from 'tiny_inspiration/common';
+import Quotes from './quotes';
 
 export const getSetupCommands = async () => {
     // Fetch the translated strings, and the rendered image in SVG format.
@@ -44,7 +45,12 @@ export const getSetupCommands = async () => {
             icon: buttonName,
             text: buttonText,
             onAction: () => {
-                window.console.log('Menu item clicked');
+                const randomQuote = Quotes[Math.floor(Math.random() * Quotes.length)];
+                let quote = randomQuote.quote;
+                if (randomQuote.by) {
+                    quote += `<br>${randomQuote.by}`;
+                }
+                editor.insertContent(`<blockquote>${quote}</blockquote>`);
             },
         });
     };

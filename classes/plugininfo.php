@@ -17,6 +17,7 @@
 namespace tiny_inspiration;
 
 use editor_tiny\plugin;
+use editor_tiny\plugin_with_configuration;
 
 /**
  * Tiny inspirational quotes plugin.
@@ -25,7 +26,9 @@ use editor_tiny\plugin;
  * @copyright  Andrew Lyons <andrew@nicols.co.uk>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class plugininfo extends plugin {
+class plugininfo extends plugin implements
+   plugin_with_configuration
+{
     #[\Override]
     public static function is_enabled(
         \context $context,
@@ -35,5 +38,19 @@ class plugininfo extends plugin {
     ): bool {
         // Users must have permission to generate inspiration.
         return has_capability('tiny/inspiration:inspire', $context);
+    }
+
+    #[\Override]
+    public static function get_plugin_configuration_for_context(
+        \context $context,
+        array $options,
+        array $fpoptions,
+        ?\editor_tiny\editor $editor = null
+    ): array {
+        $config = get_config('tiny_inspiration');
+
+        return [
+            'fetchcount' => $config->fetchcount,
+        ];
     }
 }
