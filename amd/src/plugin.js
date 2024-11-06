@@ -22,8 +22,8 @@
  */
 
 import {getTinyMCE} from 'editor_tiny/loader';
-
-const pluginName = 'tiny_inspiration/plugin';
+import {pluginName} from './common';
+import * as Configuration from './configuration';
 
 export default new Promise((resolve) => {
     // Initialise the plugin.
@@ -38,6 +38,6 @@ export default new Promise((resolve) => {
         });
 
         // Resolve the Plugin and include configuration.
-        resolve([pluginName, () => {}]);
+        resolve([pluginName, Configuration]);
     });
 });
