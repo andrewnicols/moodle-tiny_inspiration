@@ -15,15 +15,28 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Tiny inspiration plugin version details.
+ * Capability definitions for Inspiration Quotes
+ *
+ * Documentation: {@link https://moodledev.io/docs/apis/subsystems/access}
  *
  * @package    tiny_inspiration
- * @copyright  Andrew Lyons <andrew@nicols.co.uk>
- * @license    https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @category   access
+ * @copyright  2024 Andrew Lyons <andrew@nicols.co.uk>
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2024110701;        // The current plugin version (Date: YYYYMMDDXX).
-$plugin->requires  = 2024100100;        // Requires this Moodle version.
-$plugin->component = 'tiny_inspiration'; // Full name of the plugin (used for diagnostics).
+$capabilities = [
+
+    'tiny/inspiration:inspire' => [
+        'captype' => 'read',
+        'contextlevel' => CONTEXT_COURSE,
+        'archetypes' => [
+            'teacher' => CAP_ALLOW,
+            'editingteacher' => CAP_ALLOW,
+            'coursecreator' => CAP_ALLOW,
+            'manager' => CAP_ALLOW,
+        ],
+    ],
+];
