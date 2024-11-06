@@ -21,6 +21,11 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+import {buttonName} from './common';
+import {addMenubarItem} from 'editor_tiny/utils';
+
 export const configure = (instanceConfig) => {
-    return {};
+    return {
+        menu: addMenubarItem(instanceConfig.menu, 'insert', buttonName),
+    };
 };

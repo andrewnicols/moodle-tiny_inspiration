@@ -24,15 +24,18 @@
 import {getTinyMCE} from 'editor_tiny/loader';
 import {pluginName} from './common';
 import * as Configuration from './configuration';
+import {getSetupCommands} from './commands';
 
 export default new Promise((resolve) => {
     // Initialise the plugin.
     Promise.all([
         getTinyMCE(),
-    ]).then(([tinyMCE]) => {
+        getSetupCommands(),
+    ]).then(([tinyMCE, setupCommands]) => {
         // This is where we define icons, buttons, menu items, and so on.
-        tinyMCE.PluginManager.add(pluginName, () => {
+        tinyMCE.PluginManager.add(pluginName, (editor) => {
             // Note: The contents of this method must be synchronous and not return any Promise.
+            setupCommands(editor);
 
             return;
         });

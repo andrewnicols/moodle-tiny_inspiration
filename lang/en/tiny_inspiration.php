@@ -22,5 +22,6 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+$string['buttontitle'] = 'Inspirational quote';
 $string['pluginname'] = 'Inspiration Quotes';
 $string['privacy:metadata'] = 'The Inspirational Quotes plugin does not store any personal data.';
